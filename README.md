@@ -63,8 +63,13 @@ the CPU; they differ only in whether CUDA support is compiled in.
 | `IFAN.safetensors` | the converted checkpoint | see Choosing a checkpoint |
 
 ```sh
+chmod +x ifan-linux-x86_64
 ./ifan-linux-x86_64 -m IFAN.safetensors -i blurry.png -o sharp.png
 ```
+
+The `chmod` is not decoration: a download does not carry the executable
+bit through, and a binary that has lost it fails with `Permission denied`
+before it can print anything.
 
 ## Build
 
