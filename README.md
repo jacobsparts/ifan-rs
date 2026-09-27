@@ -59,7 +59,7 @@ the CPU; they differ only in whether CUDA support is compiled in.
 | asset | contents | notes |
 |---|---|---|
 | `ifan-linux-x86_64` | CPU + CUDA | x86-64 Linux with glibc >= 2.34 (Ubuntu 22.04+, Debian 12+, RHEL 9+); the GPU path needs a compute capability 6.1+ GPU, `--cpu` runs the pure-Rust path anywhere |
-| `ifan-linux-x86_64-cpu-only` | CPU only | same, with nothing NVIDIA-related included - a GPU run is refused with a reason rather than falling back |
+| `ifan-linux-x86_64-cpu-only` | CPU only | same, with nothing NVIDIA-related included - the CPU backend is its only one, and it says so if you run it without `--cpu` instead of falling back |
 | `IFAN.safetensors` | the converted checkpoint | see Choosing a checkpoint |
 
 ```sh
@@ -76,9 +76,10 @@ cargo build --release --no-default-features
 
 The default build needs `nvcc` (set `NVCC=` if it is not on `PATH`) and produces
 one binary with both backends. The `--no-default-features` build contains only
-the CPU path, which reports `this build has no CUDA backend (built without the
-`cuda` feature); pass --cpu or rebuild with the default features` if asked for the
-GPU rather than failing obscurely. The kernels cover `sm_61`, `sm_75`, `sm_80`
+the CPU path: the GPU is that build's default backend, so run without `--cpu` it
+reports `this build has no CUDA backend (built without the `cuda` feature); pass
+--cpu or rebuild with the default features` rather than failing obscurely, and
+`--cpu` runs it. The kernels cover `sm_61`, `sm_75`, `sm_80`
 and compute capability 8.0 PTX, so the GPU path runs on Pascal (GTX 10-series)
 through Ampere, and on anything newer via the PTX.
 
