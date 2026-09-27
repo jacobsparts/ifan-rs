@@ -1,0 +1,14 @@
+/target
+
+# Not tracked on purpose, as in the rest of the family: the toolkit is the
+# dependency that moves, and every engine here builds against it as it stands
+# rather than against a frozen revision.
+Cargo.lock
+
+# The checkpoints the engine reads are converted .safetensors files; the
+# upstream .pytorch originals are large and are not part of this project.
+*.pytorch
+
+# Python: tools/ has three scripts, and running them leaves bytecode behind.
+__pycache__/
+*.pyc

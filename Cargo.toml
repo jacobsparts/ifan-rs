@@ -1,0 +1,48 @@
+[package]
+name = "ifan"
+version = "0.1.0"
+edition = "2021"
+description = "Fast, self-contained IFAN defocus deblurring (CVPR 2021) in Rust with CPU and CUDA backends"
+license = "MIT"
+readme = "README.md"
+
+[lib]
+name = "ifan"
+path = "src/lib.rs"
+
+[[bin]]
+name = "ifan"
+path = "src/main.rs"
+
+[features]
+# The default build supports both backends: `--cpu` is pure Rust, the default
+# GPU path uses the embedded CUDA fatbins. Building the CUDA feature needs nvcc
+# (set NVCC=/path/to/nvcc if it is not on PATH).
+default = ["cuda"]
+# Compiles cuda/ifan.cu with nvcc and embeds the fatbins.
+cuda = []
+# DEVELOPMENT BUILDS ONLY. Adds `--dump` (the raw f32 output planes) and
+# `--dump-op` (stop at one named activation and dump that), which are how a
+# divergence from tools/reference.py is located to a single op instead of being
+# inferred from the final image. Neither is any use to someone who wants a
+# restored PNG, so a release binary neither accepts them nor lists them, and it
+# refuses them BY NAME rather than ignoring them.
+#     cargo build --release --features dev
+dev = []
+
+[dependencies]
+png = "0.17"
+rayon = "1"
+# Driver layer, module/launch/buffer plumbing and the generic kernel set. A git
+# dependency rather than a path, so a clone of this repository builds on its own.
+lightgpu = { git = "https://github.com/jacobsparts/lightgpu.git" }
+
+[build-dependencies]
+# Compiles this engine's kernel family and the toolkit subset it calls.
+lightgpu-build = { git = "https://github.com/jacobsparts/lightgpu.git", package = "lightgpu-build" }
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 4
+panic = "abort"
