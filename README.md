@@ -3,15 +3,16 @@
 One of the [lightgpu inference engines](https://github.com/jacobsparts/lightgpu).
 The family also includes [nafnet-rs](https://github.com/jacobsparts/nafnet-rs),
 [rmbg-rs](https://github.com/jacobsparts/rmbg-rs),
-[realesrgan-rs](https://github.com/jacobsparts/realesrgan-rs),
-[lama-inpaint-rs](https://github.com/jacobsparts/lama-inpaint-rs),
-[locate-anything-rs](https://github.com/jacobsparts/locate-anything-rs),
 [maxim-rs](https://github.com/jacobsparts/maxim-rs),
 [scunet-rs](https://github.com/jacobsparts/scunet-rs),
-[adaptive-enhance](https://github.com/jacobsparts/adaptive-enhance),
-[nightenh-rs](https://github.com/jacobsparts/nightenh-rs) and
-[swin2sr-rs](https://github.com/jacobsparts/swin2sr-rs), all
-built on the [lightgpu toolkit](https://github.com/jacobsparts/lightgpu);
+[swin2sr-rs](https://github.com/jacobsparts/swin2sr-rs),
+[realesrgan-rs](https://github.com/jacobsparts/realesrgan-rs),
+[lama-inpaint-rs](https://github.com/jacobsparts/lama-inpaint-rs),
+[locate-anything-rs](https://github.com/jacobsparts/locate-anything-rs) and
+[nightenh-rs](https://github.com/jacobsparts/nightenh-rs), all built on the
+[lightgpu toolkit](https://github.com/jacobsparts/lightgpu);
+[adaptive-enhance](https://github.com/jacobsparts/adaptive-enhance) is a CPU-only
+toolset that does not use it, and
 [pixeldeck](https://github.com/jacobsparts/pixeldeck) is a local web app for
 cleaning up product photos that drives them all.
 
